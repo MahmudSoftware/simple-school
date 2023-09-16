@@ -1,0 +1,365 @@
+ @extends('Admin.Master')
+ @section('MainContent')
+  
+<style type="text/css">
+    .rrrrr{
+        height: 30px;
+        
+    }
+    .heeee{
+        text-align: center;
+    }
+
+    .bopo{
+      border: none;
+
+    }
+   
+</style>
+ <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_panel">
+                            <div class="x_title" style="margin-top: 20px;">
+                              <div class="container">
+<h4 class="heeee">ADARSHA PRE-CADET SCHOOL </h4>
+<P class="heeee"> Hospital Mor, Gobindaganj, Gaibandha</P>
+<P class="heeee">Phone: 01911539893, 01792984747 &nbsp;  </P> <br>
+  <div class="heeee"><b> Student's Mark Sheet / Play Section Koroby</b></div>
+  
+  <h3 style="text-align: center; color: #30BAF8;"><b>{{ Session::get('Message') }}</b></h3>
+           
+<form action="{{ url('/SavePlayBMarkSh') }}" method="POST">
+     @csrf
+<div class="row">
+   
+    
+
+</div>
+
+  <br>
+
+<div class="row">
+
+  <div class="col-sm-6">Student ID: &nbsp; &nbsp; &nbsp; &nbsp;
+    <input type="text" class="bopo" value="{{ $Student->StudentId }}"  name="StudentID" readonly="">
+  </div>
+ 
+
+ <div class="col-sm-6">Roll: &nbsp; &nbsp; 
+    <input type="text" class="bopo" value="{{ $Student->Roll }}" name="Roll" readonly="">
+  </div>
+
+</div> <br>
+<div class="row">
+
+   <div class="col-sm-6">Student's Name: &nbsp; &nbsp; &nbsp; &nbsp; 
+    <input type="text" class="bopo" name="StudentsName" value="{{ $Student->StudentName }}" readonly="">
+  </div>
+  <div class="col-sm-6">Father's name : 
+
+    <input type="text" class="bopo" value="{{ $Student->FathersName }}" name="Fathersname" readonly="">
+
+  </div>
+
+ 
+
+</div>
+
+
+<br>
+<div class="form-group">
+    <table class="table-bordered">
+                                            <tr class="rrrrr">
+                                                    <td>SL</td>
+                                                   
+                                                    <td class="text-center">Subject</td>
+                                                    <td class="text-center">1St Exm</td>
+                                                    <td class="text-center">2Nd Exm</td>
+                                                    <td class="text-center">3rd Exm</td>
+                                                    <td class="text-center">Final Exm</td>
+                                                    
+                                                    <td class="text-center">Total</td>
+                                                    <td class="text-center">Average</td>
+                                                    
+                                                        
+                                            </tr>
+
+                                            <tr >
+    <td style=""><input type="text" class="rrrrr" value="1" style="width: 30px;"></td>
+
+ <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 200px;"  name="Subjectone"></td>
+    <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 100px;" name="onExmon" id="onExmon"></td>
+  <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 100px;" name="twExmon" id="twExmon"></td>
+
+  <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 100px;" name="ThreExmon" id="ThreExmon"></td>
+
+    <td><input type="text" class="rrrrr" onkeyup="PlayMarksix()" name="FiExmon" style="width: 100px;" id="FiExmon"></td>
+  
+
+    <td><input type="text" class="rrrrr" name="TotalOn" readonly="" id="TotalOn"></td>
+    <td><input type="text" class="rrrrr" name="AvgOn" readonly="" id="AvgOn"></td>
+                                           
+                                            </tr>
+
+                                             <tr >
+    <td style=""><input type="text" class="rrrrr" value="2" style="width: 30px;"></td>
+
+ <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 200px;"  name="SubjectTwo"></td>
+    <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 100px;" name="onExTwo" id="onExTwo"></td>
+  <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 100px;" name="twExmTwo" id="twExmTwo"></td>
+
+  <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 100px;" name="ThreExTwo" id="ThreExTwo"></td>
+
+    <td><input type="text" class="rrrrr" onkeyup="PlayMarksix()" name="FiExTwo" style="width: 100px;" id="FiExTwo"></td>
+  
+
+    <td><input type="text" class="rrrrr" name="TotalTwo" readonly="" id="TotalTwo"></td>
+    <td><input type="text" class="rrrrr" name="AvgTwo"  readonly="" id="AvgTwo"></td>
+                                           
+                                            </tr>
+
+                                             <tr >
+    <td style=""><input type="text" class="rrrrr" value="3" style="width: 30px;"></td>
+
+ <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 200px;"  name="SubjectThree"></td>
+    <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 100px;" name="onExThree" id="onExThree"></td>
+  <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 100px;" name="twExmThree" id="twExmThree"></td>
+
+  <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 100px;" name="ThreExmThree" id="ThreExmThree"></td>
+
+    <td><input type="text" class="rrrrr" onkeyup="PlayMarksix()" name="FiExmThree" style="width: 100px;" id="FiExmThree"></td>
+  
+
+    <td><input type="text" class="rrrrr" name="TotalThree" readonly="" id="TotalThree"></td>
+    <td><input type="text" class="rrrrr" name="AvgTotalThree" readonly="" id="AvgTotalThree"></td>
+                                           
+                                            </tr>
+
+                                             <tr >
+    <td style=""><input type="text" class="rrrrr" value="4" style="width: 30px;"></td>
+
+ <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 200px;"  name="SubjectFour"></td>
+    <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 100px;" name="onExmFour" id="onExmFour"></td>
+  <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 100px;" name="twExmFour" id="twExmFour"></td>
+
+  <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 100px;" name="ThreeExmFour" id="ThreeExmFour"></td>
+
+    <td><input type="text" class="rrrrr" onkeyup="PlayMarksix()" name="FiExmFour" style="width: 100px;" id="FiExmFour"></td>
+  
+
+    <td><input type="text" class="rrrrr" name="TotalFour" readonly="" id="TotalFour"></td>
+    <td><input type="text" class="rrrrr" name="AvgFour" readonly="" id="AvgFour"></td>
+                                           
+                                            </tr>
+                          <!-- Total mark -->
+                                             <tr >
+    <td style=""><input type="text" class="rrrrr" value="5" style="width: 30px;"></td>
+
+ <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 200px;"  name="SubjectFive"></td>
+    <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 100px;" name="onExmFive" id="onExmFive"></td>
+  <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 100px;" name="twExmFive" id="twExmFive"></td>
+
+  <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 100px;" name="ThreExmFive" id="ThreExmFive"></td>
+
+    <td><input type="text" class="rrrrr" onkeyup="PlayMarksix()" name="FiExmFive" style="width: 100px;" id="FiExmFive"></td>
+  
+
+    <td><input type="text" class="rrrrr" name="TotalFive" readonly="" id="TotalFive"></td>
+    <td><input type="text" class="rrrrr" name="AvgFive" readonly="" id="AvgFive"></td>
+                                           
+                                            </tr>
+
+                                             <tr >
+    <td style=""><input type="text" class="rrrrr" value="" style="width: 30px;"></td>
+
+ <td><input type="text" value="Total Mark = " onkeyup="PlayMarksix()" class="rrrrr" style="width: 200px;"></td>
+
+    <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 100px;" name="onExmTotal" id="onExmTotal"></td>
+
+  <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 100px;" name="twExmTotal" id="twExmTotal"></td>
+
+  <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 100px;" name="ThreExmTotal" id="ThreExmTotal"></td>
+
+    <td><input type="text" class="rrrrr" onkeyup="PlayMarksix()" name="FiExmTotal" style="width: 100px;" id="FiExmTotal"></td>
+  
+
+    <td><input type="text" class="rrrrr"  readonly="" id="GrandTotal"></td>
+    <td><input type="text" class="rrrrr"  readonly="" id="GrandAvg"></td>
+                                           
+                                            </tr>
+
+
+           <!-- Average Mark -->
+
+                                            <tr >
+    <td style=""><input type="text" class="rrrrr" value="" style="width: 30px;"></td>
+
+ <td><input type="text" value="Average Mark = " onkeyup="PlayMarksix()" class="rrrrr" style="width: 200px;"></td>
+
+    <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 100px;" name="onExmAverage" id="onExmAverage"></td>
+
+  <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 100px;" name="twExmAverage" id="twExmAverage"></td>
+
+  <td><input type="text" onkeyup="PlayMarksix()" class="rrrrr" style="width: 100px;" name="ThreExmAverage" id="ThreExmAverage"></td>
+
+    <td><input type="text" class="rrrrr" onkeyup="PlayMarksix()" name="FiExmAverage" style="width: 100px;" id="FiExmAverage"></td>
+  
+
+    <td><input type="text" class="rrrrr"  name="GrandAverage" readonly="" id="GrandAverage"></td>
+    <td><input type="text" class="rrrrr"  readonly="" id="GrandTotalAverage"></td>
+                                           
+                                            </tr>
+
+
+
+                                            
+
+                                            
+                                            </table>
+
+                                            
+
+     </div>
+<button type="submit" class="btn btn-success btn-block">Save</button>
+
+</form>
+
+<br>
+
+
+        </div>
+    </div>
+</div>
+</div>
+ </div>       
+ 
+<script>
+    
+
+
+function PlayMarksix()
+{
+    var onExmon = Number(document.getElementById('onExmon').value);
+    var twExmon = Number(document.getElementById('twExmon').value);
+    var ThreExmon = Number(document.getElementById('ThreExmon').value);
+    var FiExmon = Number(document.getElementById('FiExmon').value);
+
+    var Totalmarkon = onExmon+twExmon+ThreExmon+FiExmon;
+    var AvOfTotalmarkon = Totalmarkon/4;
+    document.getElementById('TotalOn').value=Totalmarkon;
+    document.getElementById('AvgOn').value=AvOfTotalmarkon;
+    
+
+
+
+    var onExTwo = Number(document.getElementById('onExTwo').value);
+    var twExmTwo = Number(document.getElementById('twExmTwo').value);
+    var ThreExTwo = Number(document.getElementById('ThreExTwo').value);
+    var FiExTwo = Number(document.getElementById('FiExTwo').value);
+
+    var TotalmarkTwo = onExTwo+twExmTwo+ThreExTwo+FiExTwo;
+
+    var AvOfTotalmarkTwo = TotalmarkTwo/4;
+    document.getElementById('TotalTwo').value=TotalmarkTwo;
+    document.getElementById('AvgTwo').value=AvOfTotalmarkTwo;
+
+
+
+
+
+    var onExThree = Number(document.getElementById('onExThree').value);
+    var twExmThree = Number(document.getElementById('twExmThree').value);
+    var ThreExmThree = Number(document.getElementById('ThreExmThree').value);
+    var FiExmThree = Number(document.getElementById('FiExmThree').value);
+
+    var TotalmarkThree = onExThree+twExmThree+ThreExmThree+FiExmThree;
+    
+    var AvOfTotalmarkThree = TotalmarkThree/4;
+    document.getElementById('TotalThree').value=TotalmarkThree;
+    document.getElementById('AvgTotalThree').value=AvOfTotalmarkThree;
+
+
+
+
+     var onExmFour = Number(document.getElementById('onExmFour').value);
+    var twExmFour = Number(document.getElementById('twExmFour').value);
+    var ThreeExmFour = Number(document.getElementById('ThreeExmFour').value);
+    var FiExmFour = Number(document.getElementById('FiExmFour').value);
+
+    var TotalmarkFour = onExmFour+twExmFour+ThreeExmFour+FiExmFour;
+    
+    var AvOfTotalmarkFour = TotalmarkFour/4;
+    document.getElementById('TotalFour').value=TotalmarkFour;
+    document.getElementById('AvgFour').value=AvOfTotalmarkFour;
+
+
+
+   var onExmFive = Number(document.getElementById('onExmFive').value);
+    var twExmFive = Number(document.getElementById('twExmFive').value);
+    var ThreExmFive = Number(document.getElementById('ThreExmFive').value);
+    var FiExmFive = Number(document.getElementById('FiExmFive').value);
+
+    var TotalmarkFive = onExmFive+twExmFive+ThreExmFive+FiExmFive;
+    
+    var AvOfTotalmarkFive = TotalmarkFive/4;
+    document.getElementById('TotalFive').value=TotalmarkFive;
+    document.getElementById('AvgFive').value=AvOfTotalmarkFive;
+
+   
+   var FirstAverage = onExmon+onExTwo+onExThree+onExmFour+onExmFive;
+
+   var FirstAverageAgricate = FirstAverage/5;
+    document.getElementById('onExmTotal').value=FirstAverage;
+    document.getElementById('onExmAverage').value=FirstAverageAgricate;
+
+   var SecondAverage =twExmon+twExmTwo+twExmThree+twExmFour+twExmFive;
+   var SwcondAverageAgricate = SecondAverage/5;
+    document.getElementById('twExmTotal').value=SecondAverage;
+    document.getElementById('twExmAverage').value=SwcondAverageAgricate;
+
+
+    
+   var ThreeAverage =ThreExmon+ThreExTwo+ThreExmThree+ThreeExmFour+ThreExmFive;
+   var ThreeAverageAgricate = ThreeAverage/5;
+    document.getElementById('ThreExmTotal').value=ThreeAverage;
+    document.getElementById('ThreExmAverage').value=ThreeAverageAgricate;
+
+
+
+    var FinalAverage =FiExmon+FiExTwo+FiExmThree+FiExmFour+FiExmFive;
+   var FinalAverageAgricate = FinalAverage/5;
+    document.getElementById('FiExmTotal').value=FinalAverage;
+    document.getElementById('FiExmAverage').value=FinalAverageAgricate;
+
+
+   var onExmAverage = Number(document.getElementById('onExmAverage').value);
+   var twExmAverage = Number(document.getElementById('twExmAverage').value);
+   var ThreExmAverage = Number(document.getElementById('ThreExmAverage').value);
+   var FiExmAverage = Number(document.getElementById('FiExmAverage').value);
+       
+     
+
+  var GrandAv = onExmAverage+twExmAverage+ThreExmAverage+FiExmAverage;
+  var GrandAverage = GrandAv/4;
+  
+    document.getElementById('GrandAverage').value=GrandAverage;
+
+
+
+
+      
+
+}     
+
+
+
+
+
+
+
+
+
+
+</script>
+
+  @endsection
